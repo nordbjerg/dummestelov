@@ -1,0 +1,38 @@
++-----------------------+
+| law                   |
++-----------------------+
+| id, INT PK UNQ        |-
+| title, VCHAR(255) UNQ | \      law has many sections
+| date, TIMESTMP        |-|---------------------------\
+| ministry, CHAR(3)     | /                           |
+| actual, BOOL DEF 0    |-                            |
+\-----------------------/                             |
+                                					  |
++--------------------+                                |
+| section            |                                |
++--------------------+                                |
+| id, INT PK UNQ     |                                |
+| law, INT FK        |                                |
+| date, TIMESTMP     |--------------------------------/
+| num, INT           |
+| content, FULLTEXT  |
+| revision, INT      | To get the latest revision, sort by revision descending
+\--------------------/
+
++-------------------+
+| comment           |
++-------------------+
+| id, INT PK UNQ    |
+| author, INT FK    |
+| date, TIMESTMP    |
+| section, INT FK   | 
+| deleted, TIMESTMP |
+\-------------------/
+
++------------------+
+| user             |
++------------------+
+
++------------------+
+| vote             |
++------------------+
