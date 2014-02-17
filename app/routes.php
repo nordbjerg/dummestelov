@@ -11,6 +11,7 @@
 |
 */
 
+// TODO: Comments
 Route::get('/', function()
 {
 	return View::make('home');

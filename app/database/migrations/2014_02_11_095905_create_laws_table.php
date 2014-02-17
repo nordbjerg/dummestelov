@@ -12,7 +12,14 @@ class CreateLawsTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+		Schema::create('laws', function($table)
+        {
+            $table->increments('id');
+            $table->string('name')->unique();
+            $table->string('ministry', 3);
+            $table->softDeletes();
+            $table->timestamps();
+        });
 	}
 
 	/**
@@ -22,7 +29,7 @@ class CreateLawsTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('laws');
 	}
 
 }

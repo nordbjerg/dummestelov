@@ -10,7 +10,7 @@ class Law extends Eloquent {
 	 *
 	 * @var string
 	 */
-	protected $table = 'law';
+	protected $table = 'laws';
 
 	public function sections()
 	{

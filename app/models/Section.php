@@ -3,6 +3,7 @@
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
+// TODO: Documents
 class Section extends Eloquent {
 
 	/**
@@ -10,7 +11,7 @@ class Section extends Eloquent {
 	 *
 	 * @var string
 	 */
-	protected $table = 'section';
+	protected $table = 'sections';
 	
 	public function comments()
 	{
@@ -20,6 +21,25 @@ class Section extends Eloquent {
 	public function law()
 	{
 		return $this->belongsTo('Law');
+	}
+
+	public function scopePopular($query)
+	{
+		return $query->orderBy('votes', 'desc');
+	}
+
+	public function getVotesAttribute($value)
+	{
+		$suffix = array('TD', 'M');
+	    $result = '';
+
+	    while ($value >= 1000
+	    	&& count($suffix) > 0) {
+	        $value = $value / 1000.0;
+	        $result = array_shift($suffix);
+	    }
+
+	    return round($value, max(0, 3 - strlen($value))).$result;
 	}
 
 }
